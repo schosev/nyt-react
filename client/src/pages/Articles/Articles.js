@@ -56,17 +56,17 @@ class Articles extends Component {
     event.preventDefault();
 
     let searchParm = this.state.search;
-    console.log("start year ", this.state.startYr);
-    console.log("end year ", this.state.endYr);
     if (this.state.startYr) {
       searchParm += "?begin_date" + this.state.startYr + "0101";
     }
     if (this.state.endYr) {
       searchParm += "?end_date" + this.state.endYr + "1231";
     }
+
     API.getArticles(searchParm)
       .then(res => this.setState({ articles: res.data.response.docs }))
       .catch(err => console.log(err))
+      
   }
 
   formatDate = fmtDate => {
@@ -89,11 +89,11 @@ class Articles extends Component {
                 onChange={this.handleInputChange}
                 name="search"
               />
-              <Records
+              {/* <Records
                 value={this.state.nbrRecords}
                 onChange={this.handleInputChange}
                 name="nbrRecords"
-              />
+              /> */}
               <StartYr
                 value={this.state.startYr}
                 onChange={this.handleInputChange}
